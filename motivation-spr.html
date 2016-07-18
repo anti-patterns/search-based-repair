@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>Table</title>
+  </head>
+
+<body>
+<h1 style="text-align:center">Prevalence of Antipattern for SPR in the GenProg benchmarks</h1>
+All results in the table below are obtained from patch analysis of the data at:
+<a href="http://rhino.csail.mit.edu/spr-rep/spr-wsf-result/">http://rhino.csail.mit.edu/spr-rep/spr-wsf-result/</a>
+
+<table class="tg">
+  <tr>
+    <th class="tg-yw4l">SPR</th>
+    <th class="tg-yw4l">SPR patch</th>
+    <th class="tg-yw4l">Insert True</th>
+    <th class="tg-yw4l">Insert false</th>
+    <th class="tg-yw4l">Insert part of conditions</th>
+    <th class="tg-yw4l">Delete if-branch</th>
+    <th class="tg-yw4l">Delete while-loop</th>
+    <th class="tg-yw4l">Delete temp-condition</th>
+    <th class="tg-yw4l">Delete-exit</th>
+    <th class="tg-yw4l">Delete return</th>
+    <th class="tg-yw4l">Delete goto</th>
+    <th class="tg-yw4l">Delete error code</th>
+    <th class="tg-yw4l">Insert early return</th>
+    <th class="tg-yw4l">Insert early exit</th>
+    <th class="tg-yw4l">Insert goto</th>
+    <th class="tg-yw4l"></th>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">fbc-5458-5459</td>
+    <td class="tg-yw4l">//prophet generated patch<br>    if (((dst == ((void *)0)) || (dst-&gt;data == ((void *)0)) || ((((FBSTRING *)dst)-&gt;len &amp; ~2147483648UL) == 0))<p style="color:green">|| (len == 0)</p>) {        fb_hStrDelTemp_NoLock(src);        fb_hStrDelTemp_NoLock(dst);        ;        return;    }</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">gmp-13420-13421</td>
+    <td class="tg-yw4l">//prophet generated patch<p style="color:green">  b2p = (rp);</p></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">gmp-14166-14167</td>
+    <td class="tg-yw4l">//prophet generated patch<br>  if ((asize &lt; bsize || (asize == bsize &amp;&amp; _gmpn_cmp(ap, bp, asize) &lt; 0)) <p style="color:green">|| (asize == 0)</p>) {      do {          mpz_srcptr __mpz_srcptr_swap__tmp = (a);          (a) = (b);          (b) = __mpz_srcptr_swap__tmp;      } while (0);      do {          do {              mp_srcptr __mp_srcptr_swap__tmp = (ap);              (ap) = (bp);              (bp) = __mp_srcptr_swap__tmp;          } while (0);          do {              mp_size_t __mp_size_t_swap__tmp = (asize);              (asize) = (bsize);              (bsize) = __mp_size_t_swap__tmp;          } while (0);      } while (0);      do {          mpz_ptr __mpz_ptr_swap__tmp = (s);          (s) = (t);          (t) = __mpz_ptr_swap__tmp;      } while (0);  }</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">gzip-3fe0caeada-39a362ae9d</td>
+    <td class="tg-yw4l">if (((flags &amp; 8) != 0) &amp;&amp; !(1)) {	    if (no_name || (to_stdout &amp;&amp; !list) || part_nb &gt; 1) {	        char c;	        do {	            c = (inptr &lt; insize ? inbuf[inptr++] : fill_inbuf(0));	        } while (c != 0);	    } else {	        char *p = gzip_base_name(ofname);	        char *base = p;	        for (;;) {	            *p = (char)(inptr &lt; insize ? inbuf[inptr++] : fill_inbuf(0));	            if (*p++ == '\x00')	                break;	            if (p &gt;= ofname + sizeof (ofname)) {	                gzip_error("corrupted input -- file name too large");	            }	        }	        p = gzip_base_name(base);	        memmove(base, p, strlen(p) + 1);	        if (!list) {	            ;	            if (base)	                list = 0;	        }	    }	}</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">gzip-a1d3d4019d-f17cbd13a1</td>
+    <td class="tg-yw4l">/* Accept "-" as synonym for stdin */    <br>//prophet generated patch<p style="color:green">    ifd = (0);</p></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">libtiff-0860361d-1ba75257</td>
+    <td class="tg-yw4l">//prophet generated patch<br>if ((!dir-&gt;tdir_count || !w || (tsize_t)dir-&gt;tdir_count / w != cc) <p style="color:green">&amp;&amp; !(1))</p>	    goto bad;</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">libtiff-5b02179-3dfb33b</td>
+    <td class="tg-yw4l">//prophet generated patch<br>    if ((((image-&gt;xres == 0) || (image-&gt;yres == 0)) &amp;&amp; ((crop-&gt;crop_mode &amp; 16) || (crop-&gt;crop_mode &amp; 1) || (crop-&gt;crop_mode &amp; 4) || (crop-&gt;crop_mode &amp; 2))) <p style="color:green">&amp;&amp; !(1))</p> {        TIFFError("computeInputPixelOffsets", "Cannot compute margins or fixed size sections without image resolution");        TIFFError("computeInputPixelOffsets", "Specify units in pixels and try again");        return (-1);    }</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">libtiff-90d136e4-4c66680f</td>
+    <td class="tg-yw4l">//prophet generated patch<p style="color:green">if ((1))    goto success;</p></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">libtiff-d13be72c-ccadf48a</td>
+    <td class="tg-yw4l">if ((td-&gt;td_nstrips &gt; 1 &amp;&amp; td-&gt;td_compression == 1 &amp;&amp; td-&gt;td_stripbytecount[0] != td-&gt;td_stripbytecount[1]) <p style="color:green">&amp;&amp; !(1))</p> {        TIFFWarning(module, "%s: Wrong \"%s\" field, ignoring and calculating from imagelength", tif-&gt;tif_name, TIFFFieldWithTag(tif, 279)-&gt;field_name);        if (EstimateStripByteCounts(tif, dir, dircount) &lt; 0)            goto bad;    }</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">libtiff-ee2ce5b7-b5691a5a</td>
+    <td class="tg-yw4l">//prophet generated patch<p style="color:green">if ((1))    goto success;</p></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">lighttpd-1913-1914</td>
+    <td class="tg-yw4l">//prophet generated patch<br>if ((len == 0) <p style="color:green">|| (len == 3))</p>	    return 0;</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">lighttpd-1948-1949</td>
+    <td class="tg-yw4l">if (con-&gt;send-&gt;first == NULL) {		<br>//prophet generated patch<p style="color:green">		if ((1))		    return 783;</p>		if (con-&gt;conf.log_request_handling)		    log_trace("%s.%d: (trace) we can't compress streams: -&gt;first = %p", remove_path("src/mod_compress.c"), 696, con-&gt;send-&gt;first);		return HANDLER_GO_ON;	}</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">lighttpd-2330-2331</td>
+    <td class="tg-yw4l">//prophet generated patch<br>	if ((matched_encodings &amp; (1 &lt;&lt; 4)) <p style="color:green">&amp;&amp; !(1))</p> {	    compression_type = (1 &lt;&lt; 4);	    compression_name = dflt_bzip2;	}</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">lighttpd-2661-2662</td>
+    <td class="tg-yw4l">//prophet generated patch<p style="color:green">				buffer_copy_string_len((str), "", "" ? sizeof ("") - 1 : 0);</p></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">php-307562-307561</td>
+    <td class="tg-yw4l">//prophet generated patch<p style="color:green">		xmlNodeDump(buf, docp, node, 0, format);</p></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">php-307846-307853</td>
+    <td class="tg-yw4l">//prophet generated patch<p style="color:green">	memset(&amp;dateobj-&gt;time-&gt;relative, 0, sizeof (*(&amp;dateobj-&gt;time-&gt;relative)));</p></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">php-307914-307915</td>
+    <td class="tg-yw4l">//prophet generated patch<p style="color:green">				spprintf(error, 0, ("Cannot create phar '%s', file extension (or combination) not recognised or the directory does not exist"), fname);</p></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">php-308525-308529</td>
+    <td class="tg-yw4l">//prophet generated patch<p style="color:green">                                                        if ((index == 7))                                                            return; </p>                                                       do {</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">php-308734-308761</td>
+    <td class="tg-yw4l">//prophet generated patch<p style="color:green">		if ((token_type == 355))		    break;</p></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">php-309111-309159</td>
+    <td class="tg-yw4l">//prophet generated patch<br>	{	    if (((p = memchr(s, '?', (ue - s)))) <p style="color:green"> &amp;&amp; !(length == 49)</p>) {	        pp = (__extension__ (__builtin_constant_p('#') &amp;&amp; !__builtin_constant_p(s) &amp;&amp; ('#') == '\x00' ? (char *)__rawmemchr(s, '#') : __builtin_strchr(s, '#')));	        if (pp &amp;&amp; pp &lt; p) {	            p = pp;	            goto label_parse;	        }	        if (p - s) {	            ret-&gt;path = _estrndup((s), ((p - s)));	            php_replace_controlchars_ex(ret-&gt;path, (p - s));	        }	        if (pp) {	            if (pp - ++p) {	                ret-&gt;query = _estrndup((p), ((pp - p)));	                php_replace_controlchars_ex(ret-&gt;query, (pp - p));	            }	            p = pp;	            goto label_parse;	        } else if (++p - ue) {	            ret-&gt;query = _estrndup((p), ((ue - p)));	            php_replace_controlchars_ex(ret-&gt;query, (ue - p));	        }	    } else if ((p = memchr(s, '#', (ue - s)))) {	        if (p - s) {	            ret-&gt;path = _estrndup((s), ((p - s)));	            php_replace_controlchars_ex(ret-&gt;path, (p - s));	        }	      label_parse:	        p++;	        if (ue - p) {	            ret-&gt;fragment = _estrndup((p), ((ue - p)));	            php_replace_controlchars_ex(ret-&gt;fragment, (ue - p));	        }	    } else {	        ret-&gt;path = _estrndup((s), ((ue - s)));	        php_replace_controlchars_ex(ret-&gt;path, (ue - s));	    }	}</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">php-309516-309535</td>
+    <td class="tg-yw4l">//prophet generated patch<p style="color:green">		memset(&amp;dateobj-&gt;time-&gt;relative,0,sizeof(*(&amp;dateobj-&gt;time-&gt;relative)));dateobj-&gt;time-&gt;relative.y= intobj-&gt;diff-&gt;y*bias;</p></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">php-309579-309580</td>
+    <td class="tg-yw4l">//prophet generated patch<br>	if ((isostr_len) <p style="color:green">|| (isostr != 0))</p> {</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">php-309688-309716</td>
+    <td class="tg-yw4l">//prophet generated patch<p style="color:green">	phar_request_initialize();</p></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">php-309892-309910</td>
+    <td class="tg-yw4l">//prophet generated patch<br>	if ((len &gt; s1_len - offset) <p style="color:green">&amp;&amp; !(1)</p>) {	    len = s1_len - offset;	}</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">php-309986-310009</td>
+    <td class="tg-yw4l">//prophet generated patch<br>	if ((retval) <p style="color:green">&amp;&amp; !(1))</p> {	    zval_delref_p(retval);	}</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">php-310011-310050</td>
+    <td class="tg-yw4l">ALLOC_INIT_ZVAL(tmp);<br>
+                                ZVAL_COPY_VALUE(tmp, *p);<br>
+                                Z_SET_REFCOUNT_P(tmp, 0);<br>
+                                //prophet generated patch<br>
+                                <p style="color:green">_zval_copy_ctor_func(tmp); </p>
+                           </td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">php-310370-310389</td>
+    <td class="tg-yw4l">//prophet generated patch<br>	if ((op_array-&gt;static_variables) <p style="color:green">&amp;&amp; !(1) </p>{	    zend_hash_destroy(op_array-&gt;static_variables);	    _efree((op_array-&gt;static_variables));	}</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">php-310673-310681</td>
+    <td class="tg-yw4l">//prophet generated patch<p style="color:green">	_efree(((return_value)));</p/td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">php-310991-310999</td>
+    <td class="tg-yw4l">//prophet generated patch<br>                       if ((!aliases[i]-&gt;trait_method-&gt;ce || (fn-&gt;common.scope == aliases[i]-&gt;trait_method-&gt;ce &amp;&amp; (zend_binary_strcasecmp(aliases[i]-&gt;trait_method-&gt;method_name, aliases[i]-&gt;trait_method-&gt;mname_len, fn-&gt;common.function_name, fnname_len) == 0))) <p style="color:green">&amp;&amp; !((!( (zend_binary_strcasecmp(aliases[i]-&gt;trait_method-&gt;method_name, aliases[i]-&gt;trait_method-&gt;mname_len, fn-&gt;common.function_name, fnname_len) == 0)))</p>){                            if (aliases[i]-&gt;alias) {                                fn_copy = *fn;                                zend_traits_duplicate_function(&amp;fn_copy, _estrndup((aliases[i]-&gt;alias), (aliases[i]-&gt;alias_len)));                                if (aliases[i]-&gt;modifiers) {                                    fn_copy.common.fn_flags = aliases[i]-&gt;modifiers;                                    if (!(aliases[i]-&gt;modifiers &amp; (256 | 512 | 1024))) {                                        fn_copy.common.fn_flags |= 256;                                    }                                }                                lcname_len = aliases[i]-&gt;alias_len;                                lcname = zend_str_tolower_dup(aliases[i]-&gt;alias, lcname_len);                                if (_zend_hash_add_or_update(target, lcname, lcname_len + 1, &amp;fn_copy, sizeof(zend_function), ((void *)0), (1 &lt;&lt; 1)) == -1) {                                    zend_error((1 &lt;&lt; 6L), "Failed to add aliased trait method (%s) to the trait table. There is probably already a trait method with the same name", fn_copy.common.function_name);                                }                                _efree((lcname));                            }                        }                        i++;                }</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">php-311323-311300</td>
+    <td class="tg-yw4l">//prophet generated patch<br>   if ((cd-&gt;start_code + offset &gt;= group) <p style="color:green">|| (1)</p>)        (ptr[1] = (offset + adjust) &gt;&gt; 8) , (ptr[(1) + 1] = (offset + adjust) &amp; 255);    }</td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">php-311346-311348</td>
+    <td class="tg-yw4l">//prophet generated patch<br>		if ((ctx-&gt;buf.len) <p style="color:green">|| (1)</p>) {		    do {		        register size_t __nl;		        smart_str *__dest = (smart_str *)((&amp;ctx-&gt;result));		        do {		            if (!(__dest)-&gt;c) {		                (__dest)-&gt;len = 0;		                __nl = (((ctx-&gt;buf.len)));		                (__dest)-&gt;a = __nl &lt; 78 ? 78 : __nl + 128;		                (__dest)-&gt;c = (((((0)))) ? __zend_realloc((((__dest)-&gt;c)), (((__dest)-&gt;a + 1))) : _erealloc(((((__dest)-&gt;c))), ((((__dest)-&gt;a + 1))), 0));		            } else {		                __nl = (__dest)-&gt;len + (((ctx-&gt;buf.len)));		                if (__nl &gt;= (__dest)-&gt;a) {		                    (__dest)-&gt;a = __nl + 128;		                    (__dest)-&gt;c = (((((0)))) ? __zend_realloc((((__dest)-&gt;c)), (((__dest)-&gt;a + 1))) : _erealloc(((((__dest)-&gt;c))), ((((__dest)-&gt;a + 1))), 0));		                }		            }		        } while (0);		        memcpy(__dest-&gt;c + __dest-&gt;len, ((ctx-&gt;buf.c)), ((ctx-&gt;buf.len)));		        __dest-&gt;len = __nl;</td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">python-69223-69224</td>
+    <td class="tg-yw4l">//prophet generated patch       if ((!rv) <p style="color:green">&amp;&amp; !(1)</p>) {            if (set_add_entry((PySetObject *)result, entry) == -1) {                do {                    if (--((PyObject *)(result))-&gt;ob_refcnt != 0)                        ;                    else                        ((*(((PyObject *)((PyObject *)(result)))-&gt;ob_type)-&gt;tp_dealloc)((PyObject *)((PyObject *)(result))));                } while (0);                return ((void *)0);            }        }</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">python-69368-69372</td>
+    <td class="tg-yw4l">//prophet generated patch<br>        if ((!rv) <p style="color:green">&amp;&amp; !(1)</p>) {            if (set_add_entry((PySetObject *)result, entry) == -1) {                do {                    if (--((PyObject *)(result))-&gt;ob_refcnt != 0)                        ;                    else                        ((*(((PyObject *)((PyObject *)(result)))-&gt;ob_type)-&gt;tp_dealloc)((PyObject *)((PyObject *)(result))));                } while (0);                return ((void *)0);            }        }</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">python-69709-69710</td>
+    <td class="tg-yw4l">//prophet generated patch       if ((!rv) <p style="color:green">&amp;&amp; !(1)</p>) {            if (set_add_entry((PySetObject *)result, entry) == -1) {                do {                    if (--((PyObject *)(result))-&gt;ob_refcnt != 0)                        ;                    else                        ((*(((PyObject *)((PyObject *)(result)))-&gt;ob_type)-&gt;tp_dealloc)((PyObject *)((PyObject *)(result))));                } while (0);                return ((void *)0);            }        }</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">python-69783-69784</td>
+    <td class="tg-yw4l">//prophet generated patch          if ((acceptval)<p style="color:green"> &amp;&amp; !(1)</p>) {                if (0 &lt;= y &amp;&amp; y &lt; 69)                    y += 2000;                else if (69 &lt;= y &amp;&amp; y &lt; 100)                    y += 1900;                else {                    PyErr_SetString(PyExc_ValueError, "year out of range");                    return 0;                }                if (PyErr_WarnEx(PyExc_DeprecationWarning, "Century info guessed for a 2-digit year.", 1) != 0)                    return 0;            }</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">python-70019-70023</td>
+    <td class="tg-yw4l">//prophet generated patch<p style="color:green">    PyObject_GC_Track(self);</p></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">python-70098-70101</td>
+    <td class="tg-yw4l">//prophet generated patch<p style="color:green">        PyNode_Compile(PyExc_ValueError, "max_length must be greater than zero");        </p>return NULL;</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">wireshark-37112-37111</td>
+    <td class="tg-yw4l">//prophet generated patch<br>               if ((key-&gt;frame == fd_head-&gt;reassembled_in) <p style="color:green">&amp;&amp; !(1)</p>) {                    do {                        if (1)                            g_slice_free1(sizeof(fragment_data), (fd_head));                        else                            (void)((fragment_data *)0 == (fd_head));                    } while (0);                }</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">wireshark-37172-37171</td>
+    <td class="tg-yw4l">//prophet generated patch<p style="color:green">  *msgp = ((void *)0);</p></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">wireshark-37172-37173</td>
+    <td class="tg-yw4l">/prophet generated patch<p style="color:green">  *msgp = ((void *)0);</p></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">wireshark-37284-37285</td>
+    <td class="tg-yw4l">/prophet generated patch<p style="color:green">  *msgp = ((void *)0);</p></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">evaluate to F</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">Valid</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">15+6/21+6 is condition that disable or enable branches</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">N\A</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">2</td>
+    <td class="tg-yw4l">11</td>
+    <td class="tg-yw4l">0</td>
+    <td class="tg-yw4l">3</td>
+    <td class="tg-yw4l">6</td>
+    <td class="tg-yw4l">2</td>
+    <td class="tg-yw4l">0</td>
+    <td class="tg-yw4l">2</td>
+    <td class="tg-yw4l">2</td>
+    <td class="tg-yw4l">4</td>
+    <td class="tg-yw4l">2</td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l">1</td>
+    <td class="tg-yw4l">0</td>
+  </tr>
+</table>
+</body>
+</html>
+
